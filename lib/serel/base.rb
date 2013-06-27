@@ -18,6 +18,15 @@ module Serel
       end
     end
 
+    def escaped_name
+      if @escaped_name.nil?
+        @escaped_name = CGI.escape(name)
+      end
+
+      @escaped_name
+    end
+
+
     # Internal: Provides access to the internal data
     # Rather than store data using attr_writers (problems) we use a hash.
     def [](attr)

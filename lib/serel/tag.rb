@@ -47,7 +47,7 @@ module Serel
     end
 
     def faq
-      type(:tag).url("tags/#{name}/faq")
+      type(:tag).url("tags/#{escaped_name}/faq")
     end
 
     # Retrieves related tags.
@@ -56,25 +56,25 @@ module Serel
     # This is a scoping method and can be combined with other scoping methods.
     # @return [Serel::Relation] A relation scoped to the related URL
     def related
-      type(:tag).url("tags/#{name}/related")
+      type(:tag).url("tags/#{escaped_name}/related")
     end
 
     def top_answerers(period)
       raise ArgumentError, 'period must be :all_time or :month' unless [:all_time, :month].include? period
-      type(:tag_score).url("tags/#{name}/top-answerers/#{period}")
+      type(:tag_score).url("tags/#{escaped_name}/top-answerers/#{period}")
     end
 
     def top_askers(period)
       raise ArgumentError, 'period must be :all_time or :month' unless [:all_time, :month].include? period
-      type(:tag_score).url("tags/#{name}/top-askers/#{period}")
+      type(:tag_score).url("tags/#{escaped_name}/top-askers/#{period}")
     end
 
     def wiki
-      type(:tag_wiki, :singular).url("tags/#{name}/wikis").get
+      type(:tag_wiki, :singular).url("tags/#{escaped_name}/wikis").get
     end
 
     def synonyms
-      type(:tag_synonyms, :plural).url("tags/#{name}/synonyms").get
+      type(:tag_synonyms, :plural).url("tags/#{escaped_name}/synonyms").get
     end
   end
 end
