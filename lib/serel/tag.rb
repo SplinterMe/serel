@@ -72,5 +72,9 @@ module Serel
     def wiki
       type(:tag_wiki, :singular).url("tags/#{name}/wikis").get
     end
+
+    def synonyms
+      type(:tag_synonyms, :plural).url("tags/#{name}/synonyms").get
+    end
   end
 end
